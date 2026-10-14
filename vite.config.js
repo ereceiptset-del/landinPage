@@ -31,8 +31,9 @@ function seoHead() {
         '@type': 'Organization',
         name: company.name,
         description: company.description,
-        address: { '@type': 'PostalAddress', addressCountry: 'ET' },
+        address: { '@type': 'PostalAddress', addressLocality: 'Addis Ababa', addressCountry: 'ET' },
       }
+      if (company.legalName) org.legalName = company.legalName
       if (domain) org.url = `${domain}/`
       if (domain && company.logo) org.logo = `${domain}${company.logo}`
       if (contact.email) org.email = contact.email

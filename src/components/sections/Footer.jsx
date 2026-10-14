@@ -102,7 +102,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col-reverse items-start justify-between gap-6 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center">
           <p>
-            © {year} {company.name}. All rights reserved.
+            © {year} {company.legalName || company.name}. All rights reserved.
           </p>
           {legalLinks.length > 0 && (
             <ul className="flex flex-wrap gap-5 uppercase tracking-[0.12em]">

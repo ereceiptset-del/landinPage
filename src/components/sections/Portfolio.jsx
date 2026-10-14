@@ -183,7 +183,7 @@ function ProjectVisual({ project, eager }) {
   const desktop = project.images.desktop[0]
   const mobile = project.images.mobile[0]
   if (!desktop && !mobile && project.icon) {
-    return <AppIconVisual image={project.icon} alt={project.icon.alt} label="Android app" />
+    return <AppIconVisual image={project.icon} alt={project.icon.alt} label="On Google Play" />
   }
   return (
     <div className="relative w-full max-w-[400px] pb-4">

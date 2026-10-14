@@ -10,6 +10,8 @@
 
 export const company = {
   name: 'E-receipt',
+  // Registered legal name (Addis Ababa City Administration Trade Bureau business licence).
+  legalName: 'E Receipt Software Technology PLC',
   // Short line used in the footer and meta description.
   description:
     'Software and digital solutions for businesses in Ethiopia — web and mobile apps, digital receipts, e-invoicing and the integrations that connect them.',
@@ -157,15 +159,15 @@ export const services = {
 // Projects (Solutions + Projects carousel) live in ./projects.js because they import screenshots.
 
 export const solutionsSection = {
-  eyebrow: 'Our solutions',
-  title: '**Products** we build and run',
-  text: 'Alongside client work, we build our own products for businesses in Ethiopia.',
+  eyebrow: 'In development',
+  title: '**Products** we are building',
+  text: 'What our team is working on right now. Ask us about any of them.',
 }
 
 export const projectsSection = {
   eyebrow: 'Projects',
   title: 'Selected **work**',
-  text: 'A look at products we have shipped — what each one does and the features behind it.',
+  text: 'Products we have shipped — what each one does and the features behind it.',
 }
 
 /**
@@ -454,9 +456,10 @@ export const faq = {
 export const contact = {
   title: 'Want to talk to **our team?**',
   text: 'Tell us what you are working on — a new product, an integration, or an existing system that needs work.',
-  email: '',
-  phone: '',
-  location: '',
+  email: 'ereceiptset@gmail.com',
+  // From the business licence.
+  phone: '+251 98 369 6354',
+  location: 'Office 505, Woreda 03, Bole, Addis Ababa, Ethiopia',
   socials: [],
   formEndpoint: '',
   bookingUrl: '',

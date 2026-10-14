@@ -23,6 +23,9 @@ function validate(v) {
 
 export default function Contact() {
   const configured = Boolean(contact.formEndpoint)
+  // Without an endpoint, a configured email still gives a real path: the form opens the visitor's email app.
+  const mailFallback = !configured && Boolean(contact.email)
+  const canSubmit = configured || mailFallback
   const { prefill } = useContactPrefill()
   const [values, setValues] = useState(empty)
   const [errors, setErrors] = useState({})
@@ -68,12 +71,24 @@ export default function Contact() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if (!configured || inFlight.current) return
+    if (!canSubmit || inFlight.current) return
     const found = validate(values)
     setErrors(found)
     if (Object.keys(found).length) {
       const first = ['name', 'email', 'service', 'message'].find((f) => found[f])
       document.getElementById(`${formId}-${first}`)?.focus()
+      return
+    }
+    if (mailFallback) {
+      const subject = `Project enquiry: ${values.service}`
+      const details = [
+        `Name: ${values.name.trim()}`,
+        `Email: ${values.email.trim()}`,
+        values.company.trim() ? `Company: ${values.company.trim()}` : null,
+      ].filter(Boolean)
+      const body = [values.message.trim(), '', ...details].join(String.fromCharCode(10))
+      window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      setStatus('mailto')
       return
     }
     if (values.website) {
@@ -158,7 +173,7 @@ export default function Contact() {
           <div className="rounded-3xl border border-white/10 bg-[#0d121d] p-6 shadow-[0_30px_80px_-40px_rgb(47_107_255/0.45)] sm:p-9">
             <h3 className="text-xl font-bold text-white">Tell us what you're working on.</h3>
 
-            {!configured && (
+            {!configured && !mailFallback && (
               <div role="note" className="mt-5 flex gap-3 rounded-xl border border-amber-300/25 bg-amber-300/[0.07] p-4 text-sm text-amber-100/90">
                 <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                 <div>
@@ -251,14 +266,37 @@ export default function Contact() {
                 type="submit"
                 size="lg"
                 className="w-full"
-                disabled={!configured || status === 'submitting'}
-                icon={configured && status !== 'submitting' ? ArrowRight : undefined}
+                disabled={!canSubmit || status === 'submitting'}
+                icon={canSubmit && status !== 'submitting' ? ArrowRight : undefined}
                 iconLeft={status === 'submitting' ? Spinner : undefined}
               >
-                {!configured ? 'Online submissions not available yet' : status === 'submitting' ? 'Sending…' : 'Send message'}
+                {!canSubmit
+                  ? 'Online submissions not available yet'
+                  : mailFallback
+                    ? 'Continue in your email app'
+                    : status === 'submitting'
+                      ? 'Sending…'
+                      : 'Send message'}
               </Button>
+              {mailFallback && (
+                <p className="-mt-2 text-center text-xs text-white/45">
+                  Opens your email app with this message addressed to {contact.email}.
+                </p>
+              )}
 
               <div aria-live="polite" role="status" className="min-h-0">
+                {status === 'mailto' && (
+                  <p className="flex items-start gap-3 rounded-xl border border-white/15 bg-white/[0.05] p-4 text-sm text-white/80">
+                    <Mail className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                    <span>
+                      Your email app should open with the message ready — press send there. If nothing opened, email us at{' '}
+                      <a className="font-semibold underline" href={`mailto:${contact.email}`}>
+                        {contact.email}
+                      </a>
+                      .
+                    </span>
+                  </p>
+                )}
                 {status === 'success' && (
                   <p className="flex items-start gap-3 rounded-xl border border-emerald-400/25 bg-emerald-400/[0.08] p-4 text-sm text-emerald-100">
                     <CheckCircle2 className="mt-0.5 size-4 shrink-0" aria-hidden="true" />

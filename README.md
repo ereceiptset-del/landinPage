@@ -64,7 +64,7 @@ Placeholder projects that don't have details yet (eVerify, EIMS integration, Hot
 
 In `site.js` → `contact`:
 
-- `formEndpoint`: any URL that accepts a JSON `POST` with `{ name, email, company, service, message }` and returns a 2xx status, for example a Formspree form URL (`https://formspree.io/f/xxxx`). While it's empty, the form says plainly that online submissions aren't configured and its submit button is disabled. It never pretends a message was sent.
+- `formEndpoint`: any URL that accepts a JSON `POST` with `{ name, email, company, service, message }` and returns a 2xx status, for example a Formspree form URL (`https://formspree.io/f/xxxx`). While it's empty and `email` is set, the form opens the visitor's email app with the message pre-filled. If both are empty, the submit button is disabled with a notice. In neither case does it pretend a message was sent.
 - `bookingUrl`: a Calendly or Cal.com link. When it's set, a "Book a call" button appears in the Contact section.
 - `email`, `phone`, `location`, `socials`: these show in Contact and the Footer, and in the form's fallback message, only when they're filled in.
 
@@ -95,12 +95,12 @@ scripts/                   optimize-images.mjs, make-og-image.mjs
 
 | Item | Where it goes | Current behaviour |
 |---|---|---|
-| Tech stacks, live URLs, case-study text, mobile screenshots | `src/content/projects.js` | Stack hidden (card shows "Highlights"); no live links except the Adika Play Store listing |
+| Tech stacks, case-study text (challenge/approach), mobile and Adika in-app screenshots | `src/content/projects.js` | Stack hidden (card shows "Highlights"); Adika shows its app icon |
 | Details for eVerify, EIMS, Hotel BOS, Safe Transport, voting platform | `src/content/drafts.js` → `projects.js` | Dev-only drafts |
 | Logo file | `company.logo` (put the file in `/public`) | Text wordmark with a receipt mark |
 | Brand colour | `--color-brand*` in `src/index.css` | Reference blue `#2F6BFF` |
-| Email, phone, location, socials | `contact` | Hidden; the form says no channel is configured |
-| Form endpoint | `contact.formEndpoint` | Submit disabled, with an honest notice |
+| Social links | `contact.socials` | Hidden (email, phone and address are set) |
+| Form endpoint | `contact.formEndpoint` | Form validates, then opens the visitor's email app addressed to `contact.email` (it never claims the message was sent) |
 | Booking link | `contact.bookingUrl` | No booking button |
 | Approved metrics | `metrics.items` | Qualitative capability band instead of numbers |
 | Testimonials and client logos | `testimonials.items`, `clientLogos` | Section hidden; capability marquee shown |
