@@ -9,6 +9,8 @@ import Button from '../ui/Button.jsx'
 import Reveal from '../ui/Reveal.jsx'
 import { BrowserFrame, PhoneFrame } from '../ui/DeviceFrame.jsx'
 
+const live = (p) => /^(completed|live)/i.test(p.status)
+
 export default function Solutions() {
   const { requestContact } = useContactPrefill()
   if (!solutions.length) return null
@@ -36,13 +38,19 @@ export default function Solutions() {
                 aria-labelledby={`solution-${p.id}-title`}
                 className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16"
               >
-                <Reveal className={`relative pb-8 sm:pb-10 ${flip ? 'lg:order-2' : ''}`} y={32}>
+                <Reveal className={`relative ${mobile || p.draft ? 'pb-8 sm:pb-10' : ''} ${flip ? 'lg:order-2' : ''}`} y={32}>
                   <div aria-hidden="true" className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-50 to-white sm:-inset-6" />
-                  <BrowserFrame src={desktop} alt={desktop ? `${p.name} — desktop screen` : ''} url={p.url} className="w-[92%]" />
+                  <BrowserFrame
+                    image={desktop}
+                    alt={desktop?.alt || `${p.name} — desktop screen`}
+                    url={p.url}
+                    className={mobile || p.draft ? 'w-[92%]' : 'w-full'}
+                    eager={i === 0}
+                  />
                   {(mobile || p.draft) && (
                     <PhoneFrame
-                      src={mobile}
-                      alt={mobile ? `${p.name} — mobile screen` : ''}
+                      image={mobile}
+                      alt={mobile?.alt || `${p.name} — mobile screen`}
                       className="absolute right-0 bottom-0 w-[24%] min-w-[92px]"
                     />
                   )}
@@ -86,15 +94,21 @@ export default function Solutions() {
                   )}
 
                   <div className="mt-9 flex flex-wrap gap-3">
+                    {/* Finished products get a demo request; products still being built get an enquiry. */}
                     <Button
                       icon={ArrowRight}
-                      onClick={() => requestContact({ topic: p.name, message: `I'd like to request a demo of ${p.name}.` })}
+                      onClick={() =>
+                        requestContact({
+                          topic: p.name,
+                          message: live(p) ? `I'd like to request a demo of ${p.name}.` : `I'd like to hear more about ${p.name}.`,
+                        })
+                      }
                     >
-                      Request a demo
+                      {live(p) ? 'Request a demo' : `Ask about ${p.name}`}
                     </Button>
                     {p.url && (
                       <Button href={p.url} variant="outline" icon={ExternalLink}>
-                        Visit {p.name}
+                        {p.linkLabel || `Visit ${p.name}`}
                       </Button>
                     )}
                   </div>

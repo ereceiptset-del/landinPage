@@ -5,7 +5,7 @@
  *  - Leave a value empty ('' / [] / null) when the fact is not confirmed. The UI hides empty slots.
  *  - Headings use **double asterisks** to mark the blue accent phrase: '**Frequently asked** questions'.
  *  - Icons are Lucide icon names registered in src/components/ui/icons.js.
- *  - Draft placeholder projects live in ./drafts.js and only appear in `npm run dev`.
+ *  - Projects live in ./projects.js; draft placeholders in ./drafts.js (shown only in `npm run dev`).
  */
 
 export const company = {
@@ -154,17 +154,7 @@ export const services = {
   ],
 }
 
-/**
- * Projects power both "Our Solutions" (showAs: 'solution', E-receipt's own products)
- * and "Projects" (showAs: 'project', client work / case studies).
- *
- * Add confirmed projects here — see README "Adding a project". Placeholder drafts for review live in
- * ./drafts.js; they appear only in `npm run dev` and are stripped from production builds.
- *
- * images: { desktop: [importedUrl...], mobile: [importedUrl...] } — put files in src/assets/projects/
- * and import them at the top of this file. Missing images show a neutral "Screenshot pending" frame.
- */
-export const projects = []
+// Projects (Solutions + Projects carousel) live in ./projects.js because they import screenshots.
 
 export const solutionsSection = {
   eyebrow: 'Our solutions',
@@ -175,7 +165,7 @@ export const solutionsSection = {
 export const projectsSection = {
   eyebrow: 'Projects',
   title: 'Selected **work**',
-  text: 'A look at products we have shipped and are building — the problem, the approach, and the stack behind each one.',
+  text: 'A look at products we have shipped — what each one does and the features behind it.',
 }
 
 /**

@@ -2,3 +2,5 @@ node_modules
 dist
 *.local
 .DS_Store
+src/assets/projects/originals/*
+!src/assets/projects/originals/.gitkeep

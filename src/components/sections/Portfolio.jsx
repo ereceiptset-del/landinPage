@@ -10,7 +10,7 @@ import Badge, { statusTone } from '../ui/Badge.jsx'
 import Button from '../ui/Button.jsx'
 import Dialog from '../ui/Dialog.jsx'
 import Reveal from '../ui/Reveal.jsx'
-import { LaptopFrame, PhoneFrame, ScreenshotPending } from '../ui/DeviceFrame.jsx'
+import { AppIconVisual, LaptopFrame, PhoneFrame, ScreenshotPending } from '../ui/DeviceFrame.jsx'
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -96,10 +96,15 @@ export default function Portfolio() {
                   </div>
                   <h3 className="mt-5 text-[1.75rem] font-extrabold sm:text-[2rem]">{current.name}</h3>
                   <p className="mt-3 text-[15px] leading-relaxed">{current.summary}</p>
-                  {current.stack.length > 0 && (
+                  {/* Reference "Core technology" block; falls back to highlights until the stack is confirmed. */}
+                  {(current.stack.length > 0 || current.features.length > 0) && (
                     <div className="mt-6 border-l-[3px] border-brand-100 pl-4">
-                      <p className="text-[10px] font-bold tracking-[0.16em] text-muted uppercase">Core technology</p>
-                      <p className="mt-1 text-sm font-semibold text-ink">{current.stack.join(', ')}</p>
+                      <p className="text-[10px] font-bold tracking-[0.16em] text-muted uppercase">
+                        {current.stack.length ? 'Core technology' : 'Highlights'}
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-ink">
+                        {current.stack.length ? current.stack.join(', ') : current.features.slice(0, 2).join(' · ')}
+                      </p>
                     </div>
                   )}
                   <div className="mt-auto pt-8">
@@ -115,19 +120,7 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <div className="relative flex items-center justify-center bg-gradient-to-br from-surface to-brand-50/60 px-6 pt-8 pb-10 sm:px-10">
-                  <div className="relative w-full max-w-[400px] pb-4">
-                    <LaptopFrame
-                      src={current.images.desktop[0]}
-                      alt={current.images.desktop[0] ? `${current.name} — desktop screen` : ''}
-                    />
-                    {current.images.mobile[0] && (
-                      <PhoneFrame
-                        src={current.images.mobile[0]}
-                        alt={`${current.name} — mobile screen`}
-                        className="absolute -right-2 bottom-0 w-[24%] sm:-right-5"
-                      />
-                    )}
-                  </div>
+                  <ProjectVisual project={current} eager />
                 </div>
               </motion.article>
             </AnimatePresence>
@@ -185,6 +178,27 @@ export default function Portfolio() {
   )
 }
 
+/** Laptop (+ optional phone) mockup, an app icon for mobile-only apps, or a pending frame. */
+function ProjectVisual({ project, eager }) {
+  const desktop = project.images.desktop[0]
+  const mobile = project.images.mobile[0]
+  if (!desktop && !mobile && project.icon) {
+    return <AppIconVisual image={project.icon} alt={project.icon.alt} label="Android app" />
+  }
+  return (
+    <div className="relative w-full max-w-[400px] pb-4">
+      <LaptopFrame image={desktop} alt={desktop?.alt || `${project.name} — desktop screen`} eager={eager} />
+      {mobile && (
+        <PhoneFrame
+          image={mobile}
+          alt={mobile.alt || `${project.name} — mobile screen`}
+          className="absolute -right-2 bottom-0 w-[24%] sm:-right-5"
+        />
+      )}
+    </div>
+  )
+}
+
 function Neighbour({ project, side, onClick }) {
   return (
     <div
@@ -202,7 +216,16 @@ function Neighbour({ project, side, onClick }) {
           <p className="mt-4 text-xl font-extrabold text-ink">{project.name}</p>
           <p className="mt-2 line-clamp-4 text-xs leading-relaxed">{project.summary}</p>
         </div>
-        <div className="w-1/2 bg-slate-200/70" />
+        <div className="relative w-1/2 overflow-hidden bg-slate-200/70">
+          {project.images.desktop[0] && (
+            <img
+              src={project.images.desktop[0].src}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-left-top"
+            />
+          )}
+        </div>
       </div>
       <div className="absolute inset-0 bg-slate-300/30" />
     </div>
@@ -212,7 +235,9 @@ function Neighbour({ project, side, onClick }) {
 function ProjectDialog({ project, onClose }) {
   const { requestContact } = useContactPrefill()
   const p = project
-  const shots = p ? [...p.images.desktop.map((src) => ({ src, kind: 'desktop' })), ...p.images.mobile.map((src) => ({ src, kind: 'mobile' }))] : []
+  const shots = p
+    ? [...p.images.desktop.map((img) => ({ ...img, kind: 'desktop' })), ...p.images.mobile.map((img) => ({ ...img, kind: 'mobile' }))]
+    : []
   const empty = p && !p.problem && !p.built && !p.features.length && !p.stack.length
 
   return (
@@ -237,7 +262,7 @@ function ProjectDialog({ project, onClose }) {
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
             {p.url && (
               <Button href={p.url} variant="outline" icon={ExternalLink}>
-                Visit live project
+                {p.linkLabel || 'Visit live project'}
               </Button>
             )}
             <Button
@@ -313,16 +338,22 @@ function ProjectDialog({ project, onClose }) {
                     <a href={s.src} target="_blank" rel="noopener noreferrer" className="block">
                       <img
                         src={s.src}
-                        alt={`${p.name} — ${s.kind} screen ${i + 1}`}
+                        alt={s.alt || `${p.name} — ${s.kind} screen ${i + 1}`}
+                        width={s.width}
+                        height={s.height}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full object-cover object-top"
+                        className="h-auto w-full"
                       />
                       <span className="sr-only"> (opens full size in a new tab)</span>
                     </a>
                   </li>
                 ))}
               </ul>
+            ) : p.icon ? (
+              <div className="mt-4 rounded-xl border border-line bg-surface">
+                <AppIconVisual image={p.icon} alt={p.icon.alt} />
+              </div>
             ) : (
               <div className="mt-4 aspect-[16/7] overflow-hidden rounded-xl border border-line">
                 <ScreenshotPending />

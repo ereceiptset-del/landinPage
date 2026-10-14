@@ -1,4 +1,5 @@
-import { projects, nav, contact, testimonials } from '../content/site.js'
+import { nav, contact, testimonials } from '../content/site.js'
+import { projects } from '../content/projects.js'
 import * as drafts from '../content/drafts.js'
 
 // Draft placeholders show while developing (so layouts can be reviewed). In a build this condition is

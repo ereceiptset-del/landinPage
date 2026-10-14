@@ -17,7 +17,7 @@ Node 18+ is required (tested on Node 22).
 
 ## Editing content
 
-Everything visible on the page lives in **`src/content/site.js`**. Components only read from it.
+Everything visible on the page lives in **`src/content/site.js`**, except projects, which live in **`src/content/projects.js`** because they import screenshots. Components only read from these files.
 
 - **Two-tone headings:** wrap the blue phrase in `**double asterisks**`, e.g. `'**Frequently asked** questions'`.
 - **Service cards:** wrap the inline blue link phrase in `{curly braces}`.
@@ -29,31 +29,36 @@ Everything visible on the page lives in **`src/content/site.js`**. Components on
 
 1. Put the original screenshots in `src/assets/projects/originals/`, e.g. `ereceipt-desktop.png` and `ereceipt-mobile.png`.
 2. Run `npm run images`. This writes compressed `.webp` files to `src/assets/projects/`.
-3. Import the files at the top of `site.js`:
+3. Import the files at the top of `src/content/projects.js`:
    ```js
    import ereceiptDesktop from '../assets/projects/ereceipt-desktop.webp'
    import ereceiptMobile from '../assets/projects/ereceipt-mobile.webp'
    ```
-4. Fill in the project entry:
+4. Add or update the project entry:
    ```js
    {
      id: 'ereceipt',
-     draft: false,                 // drafts only show in `npm run dev`
-     showAs: 'solution',           // 'solution' = own product, 'project' = case study carousel
+     showAs: 'solution',           // 'solution' = own product row, 'project' = case-study carousel
      name: 'eReceipt',
-     status: 'Completed',          // 'Completed' | 'In progress' | 'Beta' | 'In development'
+     status: 'In progress',        // 'Completed' → "Request a demo"; anything else → "Ask about …"
      category: 'Digital Receipts',
      summary: 'One-line description.',
-     problem: 'The challenge (2–3 sentences).',
-     built: 'What was built (2–3 sentences).',
+     problem: 'The challenge (2–3 sentences).',   // optional, shown in "View details"
+     built: 'What was built (2–3 sentences).',    // optional
      features: ['Feature one', 'Feature two'],
-     stack: ['React', 'Firebase'],
-     url: 'https://…',             // optional
-     images: { desktop: [ereceiptDesktop], mobile: [ereceiptMobile] },
+     stack: ['React', 'Firebase'],               // empty → card shows "Highlights" instead
+     url: 'https://…',                           // optional live link
+     linkLabel: 'View on Google Play',           // optional button text for the link
+     icon: { src: appIcon, width: 240, height: 240, alt: '…' },  // optional, for mobile-only apps
+     images: {
+       desktop: [{ src: ereceiptDesktop, width: 1366, height: 604, bg: '#ffffff', alt: '…' }],
+       mobile:  [{ src: ereceiptMobile, width: 390, height: 844, alt: '…' }],
+     },
    }
    ```
+   `bg` is the colour shown below a wide screenshot inside the 16:10 laptop mockup. Match it to the bottom of the page in the screenshot.
 
-Every project currently in `site.js` is a **draft**. Each shows a pink "Draft" badge in `npm run dev` and is left out of `npm run build`. If no non-draft project exists, the Solutions and Projects sections and their nav links are hidden in production, and "Explore Our Work" points to Services instead.
+Placeholder projects that don't have details yet (eVerify, EIMS integration, Hotel BOS, Safe Transport, Creator Awards voting) live in `src/content/drafts.js`. They show with a pink "Draft" badge in `npm run dev` and are stripped from `npm run build`. If a section has no real projects, it and its nav link are hidden, and "Explore Our Work" points to the next available section.
 
 ## Contact form and booking
 
@@ -90,7 +95,8 @@ scripts/                   optimize-images.mjs, make-og-image.mjs
 
 | Item | Where it goes | Current behaviour |
 |---|---|---|
-| Project details and screenshots | `projects` in `site.js` | All drafts: hidden in production |
+| Tech stacks, live URLs, case-study text, mobile screenshots | `src/content/projects.js` | Stack hidden (card shows "Highlights"); no live links except the Adika Play Store listing |
+| Details for eVerify, EIMS, Hotel BOS, Safe Transport, voting platform | `src/content/drafts.js` → `projects.js` | Dev-only drafts |
 | Logo file | `company.logo` (put the file in `/public`) | Text wordmark with a receipt mark |
 | Brand colour | `--color-brand*` in `src/index.css` | Reference blue `#2F6BFF` |
 | Email, phone, location, socials | `contact` | Hidden; the form says no channel is configured |
