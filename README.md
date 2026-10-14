@@ -97,7 +97,7 @@ scripts/                   optimize-images.mjs, make-og-image.mjs
 |---|---|---|
 | Tech stacks, case-study text (challenge/approach), mobile and Adika in-app screenshots | `src/content/projects.js` | Stack hidden (card shows "Highlights"); Adika shows its app icon |
 | Details for EIMS integration, Hotel BOS | `src/content/drafts.js` → `projects.js` | Dev-only drafts |
-| Brand colour | `--color-brand*` in `src/index.css` | Reference blue `#2F6BFF` |
+
 | Social links | `contact.socials` | Hidden (email, phone and address are set) |
 | Form endpoint | `contact.formEndpoint` | Form validates, then opens the visitor's email app addressed to `contact.email` (it never claims the message was sent) |
 | Booking link | `contact.bookingUrl` | No booking button |

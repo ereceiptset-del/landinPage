@@ -13,7 +13,7 @@ export default function CtaBanner() {
       <Container className="relative">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 id="cta-title" className="text-[1.875rem] leading-[1.15] font-extrabold text-white sm:text-4xl lg:text-[2.75rem]">
-            <Accent text={ctaBanner.title} />
+            <Accent text={ctaBanner.title} accentClass="text-brand-400" />
           </h2>
           {ctaBanner.text && <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-[17px]">{ctaBanner.text}</p>}
           <Button href={ctaBanner.cta.href} size="lg" icon={ArrowRight} className="mt-9">

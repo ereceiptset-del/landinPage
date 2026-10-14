@@ -33,7 +33,7 @@ function Img({ image, alt, eager, className }) {
 export function LaptopFrame({ image, alt = '', className = '', eager = false }) {
   return (
     <div className={`mx-auto w-full ${className}`}>
-      <div className="rounded-t-[14px] border border-[#1b2233] bg-[#0e1422] p-[3.2%] pb-[2.4%] shadow-[0_24px_50px_-20px_rgb(11_20_55/0.45)]">
+      <div className="rounded-t-[14px] border border-[#1b2233] bg-[#0e1422] p-[3.2%] pb-[2.4%] shadow-[0_24px_50px_-20px_rgb(15_31_24/0.45)]">
         <div className="aspect-[16/10] overflow-hidden rounded-[4px]" style={{ background: image?.bg || '#fff' }}>
           {image ? (
             <Img image={image} alt={alt} eager={eager} className="h-full w-full object-contain object-top" />
@@ -42,7 +42,7 @@ export function LaptopFrame({ image, alt = '', className = '', eager = false }) 
           )}
         </div>
       </div>
-      <div className="relative mx-[-6%] h-3 rounded-b-[14px] bg-gradient-to-b from-[#d8dce5] to-[#aab1bf] shadow-[0_12px_20px_-10px_rgb(11_20_55/0.5)]">
+      <div className="relative mx-[-6%] h-3 rounded-b-[14px] bg-gradient-to-b from-[#d8dce5] to-[#aab1bf] shadow-[0_12px_20px_-10px_rgb(15_31_24/0.5)]">
         <span className="absolute top-0 left-1/2 h-1.5 w-[14%] -translate-x-1/2 rounded-b-md bg-[#9aa1b0]" />
       </div>
     </div>
@@ -53,7 +53,7 @@ export function LaptopFrame({ image, alt = '', className = '', eager = false }) 
 export function PhoneFrame({ image, alt = '', className = '', eager = false }) {
   return (
     <div className={className}>
-      <div className="relative rounded-[22%/10%] border border-[#1b2233] bg-[#0e1422] p-[6%] shadow-[0_24px_50px_-20px_rgb(11_20_55/0.5)]">
+      <div className="relative rounded-[22%/10%] border border-[#1b2233] bg-[#0e1422] p-[6%] shadow-[0_24px_50px_-20px_rgb(15_31_24/0.5)]">
         <span aria-hidden="true" className="absolute top-[3%] left-1/2 z-10 h-[2%] w-[30%] -translate-x-1/2 rounded-full bg-[#0e1422]" />
         <div className="aspect-[9/19.5] overflow-hidden rounded-[16%/7.5%] bg-white">
           {image ? (
@@ -98,7 +98,7 @@ export function AppIconVisual({ image, alt = '', label }) {
     <div className="flex flex-col items-center gap-4 py-6">
       <div className="relative">
         <div aria-hidden="true" className="absolute inset-0 translate-y-4 scale-90 rounded-[28%] bg-ink/25 blur-2xl" />
-        <Img image={image} alt={alt} className="relative size-36 rounded-[24%] shadow-[0_20px_40px_-16px_rgb(11_20_55/0.45)] sm:size-44" />
+        <Img image={image} alt={alt} className="relative size-36 rounded-[24%] shadow-[0_20px_40px_-16px_rgb(15_31_24/0.45)] sm:size-44" />
       </div>
       {label && <span className="text-[11px] font-bold tracking-[0.16em] text-muted uppercase">{label}</span>}
     </div>

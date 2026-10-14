@@ -61,7 +61,7 @@ export default function Industries() {
                 tabIndex={-1}
                 aria-labelledby={`industry-${ind.id}-title`}
                 className={`h-full rounded-xl border bg-white p-7 transition-all duration-500 sm:p-8 ${
-                  flash === ind.id ? 'border-brand shadow-[0_0_0_4px_rgb(47_107_255/0.12)]' : 'border-line'
+                  flash === ind.id ? 'border-brand shadow-[0_0_0_4px_rgb(0_133_58/0.12)]' : 'border-line'
                 }`}
               >
                 <IconTile icon={getIcon(ind.icon)} size="size-10 rounded-lg" />

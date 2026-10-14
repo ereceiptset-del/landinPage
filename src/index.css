@@ -4,26 +4,27 @@
 @theme {
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --color-brand: #2f6bff;
-  --color-brand-600: #1f57e6;
-  --color-brand-700: #1847c2;
-  --color-brand-50: #eef3ff;
-  --color-brand-100: #dde7ff;
-  --color-brand-200: #bcd0ff;
+  --color-brand: #00853a; /* logo green, darkened slightly for AA text contrast */
+  --color-brand-400: #2fc46c; /* accent on dark backgrounds */
+  --color-brand-600: #00702f;
+  --color-brand-700: #005c27;
+  --color-brand-50: #e9f6ee;
+  --color-brand-100: #cdecda;
+  --color-brand-200: #9fd9b7;
 
-  --color-ink: #0b1437;
-  --color-body: #5b6478;
-  --color-muted: #8a93a6;
-  --color-line: #e6e9f0;
-  --color-surface: #f7f8fb;
+  --color-ink: #0f1f18;
+  --color-body: #56635c;
+  --color-muted: #85918b;
+  --color-line: #e3e9e5;
+  --color-surface: #f5f8f6;
 
-  --color-night: #0b1220;
-  --color-night-2: #111a2e;
-  --color-coal: #05070c;
+  --color-night: #08140f;
+  --color-night-2: #0e1f18;
+  --color-coal: #040a07;
 
-  --shadow-card: 0 1px 2px rgb(11 20 55 / 0.04), 0 4px 16px rgb(11 20 55 / 0.04);
-  --shadow-lift: 0 2px 4px rgb(11 20 55 / 0.05), 0 16px 36px rgb(11 20 55 / 0.08);
-  --shadow-glow: 0 0 0 1px rgb(47 107 255 / 0.35), 0 20px 60px rgb(47 107 255 / 0.25);
+  --shadow-card: 0 1px 2px rgb(15 31 24 / 0.04), 0 4px 16px rgb(15 31 24 / 0.04);
+  --shadow-lift: 0 2px 4px rgb(15 31 24 / 0.05), 0 16px 36px rgb(15 31 24 / 0.08);
+  --shadow-glow: 0 0 0 1px rgb(0 133 58 / 0.35), 0 20px 60px rgb(0 133 58 / 0.25);
 
   --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
@@ -59,7 +60,7 @@
     border-radius: 6px;
   }
   .on-dark :focus-visible {
-    outline-color: #8fb0ff;
+    outline-color: #6fd99a;
   }
 }
 
@@ -69,8 +70,8 @@
   .bg-grid {
     background-color: #fff;
     background-image:
-      linear-gradient(to right, rgb(47 107 255 / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(47 107 255 / 0.055) 1px, transparent 1px);
+      linear-gradient(to right, rgb(0 133 58 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 133 58 / 0.055) 1px, transparent 1px);
     background-size: 70px 70px;
     background-position: center top;
   }

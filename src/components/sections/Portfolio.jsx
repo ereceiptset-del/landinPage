@@ -84,7 +84,7 @@ export default function Portfolio() {
                   if (info.offset.x < -60 || info.velocity.x < -400) next()
                   else if (info.offset.x > 60 || info.velocity.x > 400) prev()
                 }}
-                className="grid grid-cols-1 cursor-grab touch-pan-y overflow-hidden rounded-3xl border border-line bg-white shadow-[0_30px_80px_-30px_rgb(11_20_55/0.25)] active:cursor-grabbing md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
+                className="grid grid-cols-1 cursor-grab touch-pan-y overflow-hidden rounded-3xl border border-line bg-white shadow-[0_30px_80px_-30px_rgb(15_31_24/0.25)] active:cursor-grabbing md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
               >
                 <div className="flex flex-col p-7 sm:p-9">
                   <div className="flex flex-wrap gap-2">

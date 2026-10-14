@@ -142,7 +142,7 @@ export default function Contact() {
       <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
         <Reveal className="lg:pt-6">
           <h2 id="contact-title" className="text-[2.2rem] leading-[1.08] font-extrabold text-white sm:text-5xl lg:text-[3.25rem]">
-            <Accent text={contact.title} />
+            <Accent text={contact.title} accentClass="text-brand-400" />
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed sm:text-[17px]">{contact.text}</p>
 
@@ -170,7 +170,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="rounded-3xl border border-white/10 bg-[#0d121d] p-6 shadow-[0_30px_80px_-40px_rgb(47_107_255/0.45)] sm:p-9">
+          <div className="rounded-3xl border border-white/10 bg-[#0a1712] p-6 shadow-[0_30px_80px_-40px_rgb(0_133_58/0.45)] sm:p-9">
             <h3 className="text-xl font-bold text-white">Tell us what you're working on.</h3>
 
             {!configured && !mailFallback && (
@@ -224,11 +224,11 @@ export default function Contact() {
                 <Field label="What do you need?" required id={`${formId}-service`} error={errors.service}>
                   <div className="relative">
                     <select required className={`${inputCls('service')} appearance-none pr-10`} {...field('service')}>
-                      <option value="" disabled className="bg-[#0d121d]">
+                      <option value="" disabled className="bg-[#0a1712]">
                         Choose one…
                       </option>
                       {options.map((o) => (
-                        <option key={o} value={o} className="bg-[#0d121d]">
+                        <option key={o} value={o} className="bg-[#0a1712]">
                           {o}
                         </option>
                       ))}
@@ -338,7 +338,7 @@ function Field({ label, id, required, hint, error, children }) {
     <div>
       <label htmlFor={id} className="text-sm font-semibold text-white/85">
         {label}
-        {required && <span className="ml-0.5 text-[#8fb0ff]" aria-hidden="true">*</span>}
+        {required && <span className="ml-0.5 text-[#6fd99a]" aria-hidden="true">*</span>}
         {hint && <span className="ml-1.5 text-xs font-normal text-white/40">({hint})</span>}
       </label>
       {children}
@@ -356,7 +356,7 @@ function ContactLine({ icon: Icon, href, children }) {
   const inner = (
     <>
       <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10">
-        <Icon className="size-4 text-[#8fb0ff]" aria-hidden="true" />
+        <Icon className="size-4 text-[#6fd99a]" aria-hidden="true" />
       </span>
       <span>{children}</span>
     </>

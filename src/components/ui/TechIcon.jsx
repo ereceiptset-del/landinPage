@@ -25,7 +25,7 @@ export function useTechIcons() {
 function tint(hex) {
   const n = parseInt(hex, 16)
   const lum = 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)
-  return lum < 40 ? '#0B1437' : `#${hex}`
+  return lum < 40 ? '#0F1F18' : `#${hex}`
 }
 
 /**
@@ -41,7 +41,7 @@ export default function TechIcon({ slug, mono, color, icons, className = 'size-1
         className={`inline-flex items-center justify-center rounded-xl font-extrabold tracking-tight text-white shadow-sm ${className} ${
           long ? 'text-[11px]' : 'text-base'
         }`}
-        style={{ background: color || '#2F6BFF' }}
+        style={{ background: color || '#00853A' }}
       >
         {mono}
       </span>

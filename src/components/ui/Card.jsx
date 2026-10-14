@@ -15,7 +15,7 @@ export default function Card({ as: Tag = 'div', className = '', radius = 'rounde
 export function IconTile({ icon: Icon, className = '', tone = 'light', size = 'size-11 rounded-xl' }) {
   const tones = {
     light: 'bg-brand-50 text-brand ring-1 ring-brand-100',
-    dark: 'bg-brand/10 text-[#8fb0ff] ring-1 ring-brand/30',
+    dark: 'bg-brand/10 text-[#6fd99a] ring-1 ring-brand/30',
   }
   return (
     <span className={`inline-flex shrink-0 items-center justify-center ${size} ${tones[tone]} ${className}`}>

@@ -3,7 +3,7 @@ const base =
 
 const variants = {
   primary:
-    'bg-brand text-white shadow-[0_8px_24px_-8px_rgb(47_107_255/0.6)] hover:bg-brand-600 hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:bg-brand',
+    'bg-brand text-white shadow-[0_8px_24px_-8px_rgb(0_133_58/0.6)] hover:bg-brand-600 hover:-translate-y-0.5 active:translate-y-0 disabled:hover:translate-y-0 disabled:hover:bg-brand',
   outline:
     'border-[1.5px] border-brand bg-white text-brand-600 hover:bg-brand-50 hover:-translate-y-0.5 active:translate-y-0',
   soft: 'border-[1.5px] border-brand/70 bg-brand-50 text-brand-600 hover:bg-brand-100',

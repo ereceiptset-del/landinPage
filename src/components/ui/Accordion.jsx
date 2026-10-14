@@ -18,7 +18,7 @@ export default function Accordion({ items, defaultOpen = 0 }) {
           <div
             key={item.q}
             className={`rounded-xl border bg-white transition-colors duration-200 ${
-              isOpen ? 'border-brand/60 shadow-[0_6px_24px_-12px_rgb(47_107_255/0.35)]' : 'border-line hover:border-brand-200'
+              isOpen ? 'border-brand/60 shadow-[0_6px_24px_-12px_rgb(0_133_58/0.35)]' : 'border-line hover:border-brand-200'
             }`}
           >
             <h3 className="m-0 text-base">

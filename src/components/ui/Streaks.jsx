@@ -29,7 +29,7 @@ export default function Streaks({ className = '' }) {
             top: `${s.top}%`,
             height: `${s.h}%`,
             opacity: s.o,
-            background: 'linear-gradient(to bottom, transparent, #2f6bff 45%, #2f6bff 70%, transparent)',
+            background: 'linear-gradient(to bottom, transparent, #1fbf62 45%, #1fbf62 70%, transparent)',
           }}
         />
       ))}

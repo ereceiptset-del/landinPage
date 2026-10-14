@@ -21,7 +21,7 @@ export default function SectionHeading({
     <Reveal className={`${center ? 'mx-auto text-center' : ''} max-w-3xl ${className}`}>
       {eyebrow && <p className={`eyebrow mb-4 ${dark ? 'text-white/55' : ''}`}>{eyebrow}</p>}
       <Tag id={id} className={`font-extrabold ${titleSize} ${dark ? 'text-white' : 'text-ink'}`}>
-        <Accent text={title} />
+        <Accent text={title} accentClass={dark ? 'text-brand-400' : 'text-brand'} />
       </Tag>
       {text && (
         <p

@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 border-b bg-white/90 backdrop-blur-md transition-[box-shadow,border-color] duration-300 ${
-        scrolled ? 'border-line shadow-[0_4px_20px_-8px_rgb(11_20_55/0.12)]' : 'border-transparent'
+        scrolled ? 'border-line shadow-[0_4px_20px_-8px_rgb(15_31_24/0.12)]' : 'border-transparent'
       }`}
     >
       <a
