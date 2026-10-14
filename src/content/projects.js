@@ -17,6 +17,8 @@ import arifcardDesktop from '../assets/projects/arifcard-desktop.webp'
 import estreamDesktop from '../assets/projects/estream-desktop.webp'
 import kineticDesktop from '../assets/projects/kinetic-desktop.webp'
 import adikaIcon from '../assets/projects/adika-icon.webp'
+import safeIcon from '../assets/projects/safe-icon.webp'
+import eliteDesktop from '../assets/projects/elite-award-desktop.webp'
 
 export const projects = [
   // ---------- Solutions rows (in progress) ----------
@@ -117,6 +119,39 @@ export const projects = [
     },
   },
 
+  {
+    id: 'elite-award',
+    showAs: 'solution',
+    name: 'ELITE Creators Award',
+    status: 'In progress',
+    category: 'Media · Voting',
+    summary:
+      'The official voting arena for the ELITE Sport Content Creators Award (TikTok Award), where fans sign up and vote for their favourite creators.',
+    problem: '',
+    built: '',
+    features: [
+      'Sign-up and login with an Ethiopian (+251) phone number',
+      'One-tap login with Telegram',
+      'Official voting arena for award categories',
+      'Amharic and English interface',
+    ],
+    stack: [],
+    url: 'https://tiktokaward-1212.web.app/',
+    linkLabel: 'Visit the voting site',
+    images: {
+      desktop: [
+        {
+          src: eliteDesktop,
+          width: 800,
+          height: 357,
+          bg: '#0f2621',
+          alt: 'ELITE Sport Content Creators Award login page with phone and Telegram sign-in',
+        },
+      ],
+      mobile: [],
+    },
+  },
+
   // ---------- Projects carousel (completed) ----------
   {
     id: 'etstream',
@@ -202,6 +237,28 @@ export const projects = [
     url: 'https://play.google.com/store/apps/details?id=com.adika.passenger&hl=en',
     linkLabel: 'View on Google Play',
     icon: { src: adikaIcon, width: 240, height: 240, alt: 'Adika app icon' },
+    images: { desktop: [], mobile: [] },
+  },
+  {
+    id: 'safe',
+    showAs: 'project',
+    name: 'Safe Passenger',
+    status: 'Completed',
+    category: 'Transport · Mobile Apps',
+    summary:
+      'Ride-hailing app for Safe Transport in Ethiopia — passengers book rides in a few taps and earn rewards for trips and referrals.',
+    problem: '',
+    built: '',
+    features: [
+      'Ride booking in a few taps',
+      'Referral codes with rewards for both riders',
+      'Cash back on trips',
+      'Also bookable through the Telebirr Super App',
+    ],
+    stack: [],
+    url: 'https://play.google.com/store/apps/details?id=com.safetransportset.safe&hl=en',
+    linkLabel: 'View on Google Play',
+    icon: { src: safeIcon, width: 240, height: 240, alt: 'Safe Passenger app icon' },
     images: { desktop: [], mobile: [] },
   },
 ]

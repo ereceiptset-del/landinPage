@@ -16,8 +16,8 @@ export const company = {
   description:
     'Software and digital solutions for businesses in Ethiopia — web and mobile apps, digital receipts, e-invoicing and the integrations that connect them.',
   country: 'Ethiopia',
-  // Logo: set to an imported asset path (e.g. '/logo.svg' in /public) to replace the text wordmark.
-  logo: null,
+  // Logo mark (file in /public). Favicons: /favicon.png and /apple-touch-icon.png.
+  logo: '/logo.png',
   foundedYear: null,
 }
 
@@ -189,85 +189,117 @@ export const metrics = {
 }
 
 /**
- * Technologies — list only what the team actually uses.
- * `slug` is a Simple Icons slug (https://simpleicons.org); leave it empty to show a monogram tile.
- * Categories with no items are hidden.
+ * Technologies — shown as tabs (one per category) with a card grid, like the reference.
+ * Each item: { name, slug, text } where `slug` is a Simple Icons slug registered in
+ * src/components/ui/techIconRegistry.js. Brands without a Simple Icons mark use
+ * { mono: 'AWS', color: '#FF9900' } to render a monogram tile instead.
+ * Keep this list to technologies the team actually works with. Empty categories are hidden.
  */
 export const technologies = {
-  title: '**Technologies** we use for custom solutions',
-  text: 'Proven tools chosen for reliability, speed of delivery and long-term maintainability.',
+  eyebrow: 'Technologies',
+  title: '**Tools & technologies** we use',
+  text: 'Proven technologies chosen for performance, reliability and developer experience.',
   categories: [
     {
-      id: 'tech-frontend',
-      title: '**Frontend** Development',
-      subtitle: 'Interfaces that are fast and easy to use',
-      text: 'Responsive, accessible web interfaces built with a modern component-based toolchain.',
+      id: 'frontend',
+      label: 'Frontend',
       items: [
-        { name: 'React', slug: 'react' },
-        { name: 'Vite', slug: 'vite' },
-        { name: 'Tailwind CSS', slug: 'tailwindcss' },
-        { name: 'JavaScript', slug: 'javascript' },
+        { name: 'React', slug: 'react', text: 'Component-based library for building fast, interactive user interfaces.' },
+        { name: 'Next.js', slug: 'nextdotjs', text: 'React framework with server rendering, static generation and routing built in.' },
+        { name: 'Angular', slug: 'angular', text: 'Full-featured TypeScript framework for large, structured web applications.' },
+        { name: 'Vue.js', slug: 'vuedotjs', text: 'Approachable, progressive framework that scales from widgets to full apps.' },
+        { name: 'Svelte', slug: 'svelte', text: 'Compiler-based UI framework that ships very little JavaScript to the browser.' },
+        { name: 'TypeScript', slug: 'typescript', text: 'Typed JavaScript that catches errors early and keeps large codebases maintainable.' },
+        { name: 'JavaScript', slug: 'javascript', text: 'The language of the web, running in every browser and on the server.' },
+        { name: 'HTML5', slug: 'html5', text: 'Semantic, accessible markup with native media and modern browser APIs.' },
+        { name: 'Tailwind CSS', slug: 'tailwindcss', text: 'Utility-first CSS for building consistent, custom designs quickly.' },
+        { name: 'Bootstrap', slug: 'bootstrap', text: 'Responsive CSS framework with a ready-made library of components.' },
+        { name: 'Material UI', slug: 'mui', text: 'React components that implement Google’s Material Design system.' },
+        { name: 'Redux', slug: 'redux', text: 'Predictable state container for complex front-end application state.' },
       ],
     },
     {
-      id: 'tech-backend',
-      title: '**Backend** Development',
-      subtitle: 'APIs and business logic you can rely on',
-      text: 'Server-side services, APIs and event-driven functions that handle your data and business rules.',
+      id: 'backend',
+      label: 'Backend',
       items: [
-        { name: 'Node.js', slug: 'nodedotjs' },
-        { name: 'Express', slug: 'express' },
-        { name: 'Cloud Functions', slug: 'googlecloud' },
+        { name: 'Node.js', slug: 'nodedotjs', text: 'Event-driven JavaScript runtime for scalable network services and APIs.' },
+        { name: 'NestJS', slug: 'nestjs', text: 'Structured, TypeScript-first Node.js framework for maintainable server apps.' },
+        { name: 'Python', slug: 'python', text: 'Readable, versatile language for web backends, automation, data and AI.' },
+        { name: 'Django', slug: 'django', text: 'Batteries-included Python web framework for building secure apps fast.' },
+        { name: 'Spring Boot', slug: 'springboot', text: 'Java framework for production-ready services and microservices.' },
+        { name: '.NET', slug: 'dotnet', text: 'Cross-platform Microsoft platform for web APIs, services and cloud apps.' },
+        { name: 'Go', slug: 'go', text: 'Compiled, statically typed language with first-class concurrency support.' },
+        { name: 'Ruby on Rails', slug: 'rubyonrails', text: 'Convention-over-configuration framework for rapid web development.' },
+        { name: 'PHP', slug: 'php', text: 'Widely used server-side scripting language built for the web.' },
+        { name: 'Laravel', slug: 'laravel', text: 'Elegant PHP framework with routing, auth, queues and an expressive ORM.' },
+        { name: 'Rust', slug: 'rust', text: 'Systems language that combines memory safety with high performance.' },
+        { name: 'Express', slug: 'express', text: 'Minimal, flexible Node.js framework for web servers and APIs.' },
       ],
     },
     {
-      id: 'tech-mobile',
-      title: '**Mobile** Development',
-      subtitle: 'One codebase, Android and iOS',
-      text: 'Cross-platform mobile apps that share code without giving up a native feel.',
-      items: [{ name: 'Flutter', slug: 'flutter' }],
-    },
-    {
-      id: 'tech-databases',
-      title: '**Database** Engineering',
-      subtitle: 'Data that stays consistent and available',
-      text: 'Realtime and document databases modelled around how your app reads and writes data.',
-      items: [{ name: 'Firestore', slug: 'firebase' }],
-    },
-    {
-      id: 'tech-cloud',
-      title: '**Cloud** Services',
-      subtitle: 'Managed infrastructure that scales with you',
-      text: 'Managed hosting, authentication and storage, so the team spends time on your product instead of servers.',
+      id: 'mobile',
+      label: 'Mobile',
       items: [
-        { name: 'Firebase', slug: 'firebase' },
-        { name: 'Google Cloud', slug: 'googlecloud' },
+        { name: 'Flutter', slug: 'flutter', text: 'Google’s UI toolkit for native Android and iOS apps from one codebase.' },
+        { name: 'React Native', slug: 'react', text: 'Native Android and iOS apps built with React and JavaScript.' },
+        { name: 'Kotlin', slug: 'kotlin', text: 'Modern, concise language recommended for Android development.' },
+        { name: 'Swift', slug: 'swift', text: 'Apple’s fast, safe language for iOS and other Apple platforms.' },
+        { name: 'Java', slug: 'openjdk', text: 'Mature language behind many Android apps and enterprise backends.' },
+        { name: 'Ionic', slug: 'ionic', text: 'Toolkit for building mobile apps with familiar web technologies.' },
+        { name: 'Objective-C', mono: 'Obj-C', color: '#438EFF', text: 'Apple’s original language, still key for maintaining older iOS code.' },
+        { name: 'Fastlane', slug: 'fastlane', text: 'Automates building, signing and releasing iOS and Android apps.' },
+        { name: 'Firebase', slug: 'firebase', text: 'Auth, realtime data, push messaging and crash reporting for mobile apps.' },
+        { name: 'Android SDK', slug: 'android', text: 'Google’s official tools and APIs for building Android apps.' },
+        { name: 'iOS SDK', slug: 'apple', text: 'Apple’s frameworks and tools for building iPhone and iPad apps.' },
+        { name: 'Xamarin', mono: 'X', color: '#3498DB', text: 'Microsoft’s .NET toolkit for building cross-platform mobile apps.' },
       ],
     },
     {
-      id: 'tech-devops',
-      title: '**DevOps** Services',
-      subtitle: 'Releases that are routine, not risky',
-      text: 'Automated checks, builds and deployments on every change.',
-      items: [{ name: 'GitHub Actions', slug: 'githubactions' }],
-    },
-    {
-      id: 'tech-integrations',
-      title: '**Integrations**',
-      subtitle: 'Connected to the local ecosystem',
-      text: 'Payment, telecom and tax-platform integrations for products that operate in Ethiopia.',
+      id: 'databases',
+      label: 'Databases',
       items: [
-        { name: 'Telebirr', slug: '' },
-        { name: 'MoR EIMS', slug: '' },
-        { name: 'Ethio Telecom', slug: '' },
+        { name: 'PostgreSQL', slug: 'postgresql', text: 'Powerful open-source relational database with rich SQL and extensions.' },
+        { name: 'MySQL', slug: 'mysql', text: 'Popular open-source relational database for web applications.' },
+        { name: 'MariaDB', slug: 'mariadb', text: 'Community-developed relational database, compatible with MySQL.' },
+        { name: 'SQLite', slug: 'sqlite', text: 'Lightweight, serverless SQL database embedded in apps and devices.' },
+        { name: 'MongoDB', slug: 'mongodb', text: 'Document database with flexible schemas and horizontal scaling.' },
+        { name: 'Redis', slug: 'redis', text: 'In-memory data store for caching, queues and real-time features.' },
+        { name: 'Elasticsearch', slug: 'elasticsearch', text: 'Distributed engine for full-text search and analytics at scale.' },
+        { name: 'Firestore', slug: 'firebase', text: 'Realtime NoSQL document database from Firebase with offline sync.' },
+        { name: 'DynamoDB', mono: 'DDB', color: '#4053D6', text: 'Fully managed NoSQL database on AWS with consistent low latency.' },
+        { name: 'Oracle', mono: 'ORCL', color: '#F80000', text: 'Enterprise relational database for mission-critical workloads.' },
+        { name: 'Cassandra', slug: 'apachecassandra', text: 'Distributed NoSQL database designed for high write throughput.' },
+        { name: 'InfluxDB', slug: 'influxdb', text: 'Time-series database for metrics, events and sensor data.' },
+        { name: 'CouchDB', slug: 'apachecouchdb', text: 'JSON document database with an HTTP API and multi-node sync.' },
       ],
     },
     {
-      id: 'tech-ai',
-      title: '**AI** & Automation',
-      subtitle: 'Less manual work',
-      text: 'Automation of repetitive steps and, where it genuinely helps, AI-assisted features.',
-      items: [],
+      id: 'cloud',
+      label: 'Cloud & DevOps',
+      items: [
+        { name: 'AWS', mono: 'AWS', color: '#FF9900', text: 'Broad cloud platform for compute, storage, databases, networking and AI.' },
+        { name: 'Azure', mono: 'Az', color: '#0078D4', text: 'Microsoft’s cloud for hosting apps, data and enterprise workloads.' },
+        { name: 'Google Cloud', slug: 'googlecloud', text: 'Google’s cloud platform, including Cloud Functions and Cloud Run.' },
+        { name: 'DigitalOcean', slug: 'digitalocean', text: 'Developer-friendly cloud with simple servers, databases and Kubernetes.' },
+        { name: 'Vercel', slug: 'vercel', text: 'Frontend cloud with instant deployments for React and Next.js apps.' },
+        { name: 'Netlify', slug: 'netlify', text: 'Platform for building, deploying and hosting modern web projects.' },
+        { name: 'Firebase', slug: 'firebase', text: 'Hosting, authentication, databases and serverless functions in one platform.' },
+        { name: 'Cloudflare', slug: 'cloudflare', text: 'Global network for CDN, DNS, security and edge computing.' },
+        { name: 'Heroku', mono: 'H', color: '#430098', text: 'Platform-as-a-service for deploying apps without managing servers.' },
+        { name: 'Linode', mono: 'Li', color: '#00A95C', text: 'Cloud hosting from Akamai with predictable pricing and solid performance.' },
+        { name: 'IBM Cloud', mono: 'IBM', color: '#1F70C1', text: 'Enterprise cloud with hybrid infrastructure and AI services.' },
+        { name: 'OpenStack', slug: 'openstack', text: 'Open-source software for building private and public clouds.' },
+        { name: 'GitHub Actions', slug: 'githubactions', text: 'CI/CD pipelines that test, build and deploy on every change.' },
+      ],
+    },
+    {
+      id: 'integrations',
+      label: 'Local integrations',
+      items: [
+        { name: 'Telebirr', mono: 'tb', color: '#0A8FD6', text: 'Mobile money payments for customers across Ethiopia.' },
+        { name: 'MoR EIMS', mono: 'EIMS', color: '#0E7A55', text: 'Ethiopia’s electronic invoice management system for fiscal receipts.' },
+        { name: 'Ethio Telecom', mono: 'ET', color: '#8DC63F', text: 'Telecom integrations such as SMS for reaching customers.' },
+      ],
     },
   ],
 }

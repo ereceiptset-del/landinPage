@@ -22,7 +22,7 @@ Everything visible on the page lives in **`src/content/site.js`**, except projec
 - **Two-tone headings:** wrap the blue phrase in `**double asterisks**`, e.g. `'**Frequently asked** questions'`.
 - **Service cards:** wrap the inline blue link phrase in `{curly braces}`.
 - **Icons:** use Lucide icon names that are registered in `src/components/ui/icons.js`. To use a new icon, add it to that file first.
-- **Technology logos:** use a [Simple Icons](https://simpleicons.org) slug that is registered in `src/components/ui/TechIcon.jsx`. With no slug, the item shows a monogram tile.
+- **Technology logos:** use a [Simple Icons](https://simpleicons.org) slug that is registered in `src/components/ui/techIconRegistry.js`. For brands Simple Icons does not ship, use `mono` and `color` to show a monogram tile. Each category in `technologies.categories` becomes a tab.
 - **Empty means hidden.** If you leave a value empty (`''` or `[]`), the matching UI isn't shown. This applies to testimonials, client logos, metrics, contact details, socials, legal links, the booking button, the domain, and the canonical and JSON-LD URL.
 
 ## Adding a project (Solutions or Projects)
@@ -58,7 +58,7 @@ Everything visible on the page lives in **`src/content/site.js`**, except projec
    ```
    `bg` is the colour shown below a wide screenshot inside the 16:10 laptop mockup. Match it to the bottom of the page in the screenshot.
 
-Placeholder projects that don't have details yet (eVerify, EIMS integration, Hotel BOS, Safe Transport, Creator Awards voting) live in `src/content/drafts.js`. They show with a pink "Draft" badge in `npm run dev` and are stripped from `npm run build`. If a section has no real projects, it and its nav link are hidden, and "Explore Our Work" points to the next available section.
+Placeholder projects that don't have details yet (EIMS integration, Hotel BOS) live in `src/content/drafts.js`. They show with a pink "Draft" badge in `npm run dev` and are stripped from `npm run build`. If a section has no real projects, it and its nav link are hidden, and "Explore Our Work" points to the next available section.
 
 ## Contact form and booking
 
@@ -96,8 +96,7 @@ scripts/                   optimize-images.mjs, make-og-image.mjs
 | Item | Where it goes | Current behaviour |
 |---|---|---|
 | Tech stacks, case-study text (challenge/approach), mobile and Adika in-app screenshots | `src/content/projects.js` | Stack hidden (card shows "Highlights"); Adika shows its app icon |
-| Details for eVerify, EIMS, Hotel BOS, Safe Transport, voting platform | `src/content/drafts.js` → `projects.js` | Dev-only drafts |
-| Logo file | `company.logo` (put the file in `/public`) | Text wordmark with a receipt mark |
+| Details for EIMS integration, Hotel BOS | `src/content/drafts.js` → `projects.js` | Dev-only drafts |
 | Brand colour | `--color-brand*` in `src/index.css` | Reference blue `#2F6BFF` |
 | Social links | `contact.socials` | Hidden (email, phone and address are set) |
 | Form endpoint | `contact.formEndpoint` | Form validates, then opens the visitor's email app addressed to `contact.email` (it never claims the message was sent) |

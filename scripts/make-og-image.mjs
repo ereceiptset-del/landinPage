@@ -7,12 +7,12 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
 <line x1="0" y1="140" x2="1200" y2="140" stroke="#2F6BFF" stroke-opacity="0.25"/>
 <line x1="980" y1="0" x2="980" y2="630" stroke="#2F6BFF" stroke-opacity="0.2"/>
 <g transform="translate(90,90)">
-<rect width="64" height="64" rx="14" fill="#2F6BFF"/><path d="M20 14h24a2 2 0 0 1 2 2v34l-5-3-4 3-5-3-5 3-4-3-5 3V16a2 2 0 0 1 2-2Z" fill="#fff"/><path d="M26 25h12M26 32h12M26 39h7" stroke="#2F6BFF" stroke-width="3.2" stroke-linecap="round"/>
 <text x="84" y="44" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B1437">E-receipt</text>
 </g>
 <text x="90" y="330" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="800" fill="#2F6BFF" letter-spacing="-2">Smart Software.</text>
 <text x="90" y="430" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="800" fill="#0B1437" letter-spacing="-2">Simpler Business.</text>
 <text x="92" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#5B6478">Software &amp; digital solutions in Ethiopia</text>
 </svg>`
-await sharp(Buffer.from(svg)).png().toFile('public/og-image.png')
+const logo = await sharp('public/logo.png').resize(64, 64).png().toBuffer()
+await sharp(Buffer.from(svg)).composite([{ input: logo, left: 90, top: 90 }]).png().toFile('public/og-image.png')
 console.log('ok')

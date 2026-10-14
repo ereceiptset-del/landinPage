@@ -3,7 +3,10 @@ import { company, services, contact, legalLinks } from '../../content/site.js'
 import { solutions, visibleNav, telHref } from '../../lib/content.js'
 import Container from '../ui/Container.jsx'
 import Wordmark from '../ui/Wordmark.jsx'
-import SocialIcon from '../ui/SocialIcon.jsx'
+import { lazy, Suspense } from 'react'
+
+// Lazy, so the icon library stays out of the main bundle (and loads only when socials exist).
+const SocialIcon = lazy(() => import('../ui/SocialIcon.jsx'))
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -46,7 +49,9 @@ export default function Footer() {
                       aria-label={s.label}
                       className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 text-white/70 transition hover:border-white/30 hover:text-white"
                     >
-                      <SocialIcon icon={s.icon} />
+                      <Suspense fallback={<span className="size-4" />}>
+                        <SocialIcon icon={s.icon} />
+                      </Suspense>
                     </a>
                   </li>
                 ))}

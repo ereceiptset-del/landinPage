@@ -1,62 +1,57 @@
-import {
-  siReact,
-  siVite,
-  siTailwindcss,
-  siJavascript,
-  siNodedotjs,
-  siExpress,
-  siGooglecloud,
-  siFlutter,
-  siFirebase,
-  siGithubactions,
-} from 'simple-icons'
+import { useEffect, useState } from 'react'
 
-// Registry of brand marks by Simple Icons slug. Only imported icons end up in the bundle.
-// To add one: import `si<Slug>` above and add it here, then use the slug in site.js.
-const icons = {
-  react: siReact,
-  vite: siVite,
-  tailwindcss: siTailwindcss,
-  javascript: siJavascript,
-  nodedotjs: siNodedotjs,
-  express: siExpress,
-  googlecloud: siGooglecloud,
-  flutter: siFlutter,
-  firebase: siFirebase,
-  githubactions: siGithubactions,
+// The registry (~50 brand marks) is a separate chunk so it never delays the first paint.
+let registry = null
+let loading = null
+function loadRegistry() {
+  if (!loading) loading = import('./techIconRegistry.js').then((m) => (registry = m.icons))
+  return loading
 }
 
-// Near-black brand colours (e.g. Express) are swapped for the ink colour so they read on the tile.
+export function useTechIcons() {
+  const [icons, setIcons] = useState(registry)
+  useEffect(() => {
+    if (registry) return
+    let alive = true
+    loadRegistry().then((r) => alive && setIcons(r))
+    return () => {
+      alive = false
+    }
+  }, [])
+  return icons
+}
+
+// Near-black brand colours (e.g. Express, Vercel) are swapped for the ink colour so they read on white.
 function tint(hex) {
   const n = parseInt(hex, 16)
   const lum = 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)
   return lum < 40 ? '#0B1437' : `#${hex}`
 }
 
-/** Small rounded tile with the technology's mark, or a monogram fallback, plus its name. */
-export default function TechIcon({ name, slug }) {
-  const icon = slug ? icons[slug] : null
-  const initials = name
-    .split(/\s+/)
-    .map((w) => w[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase()
-
-  return (
-    <div className="flex flex-col items-center gap-2.5 text-center">
-      <span className="inline-flex size-12 items-center justify-center rounded-xl border border-line bg-surface transition-colors group-hover:border-brand-100">
-        {icon ? (
-          <svg viewBox="0 0 24 24" className="size-[22px]" fill={tint(icon.hex)} aria-hidden="true">
-            <path d={icon.path} />
-          </svg>
-        ) : (
-          <span aria-hidden="true" className="text-[13px] font-extrabold tracking-tight text-brand">
-            {initials}
-          </span>
-        )}
+/**
+ * Technology mark: a Simple Icons logo (by `slug`), or a coloured monogram tile (`mono` + `color`)
+ * for brands Simple Icons doesn't ship. While the registry loads, a neutral placeholder holds the space.
+ */
+export default function TechIcon({ slug, mono, color, icons, className = 'size-10' }) {
+  if (mono) {
+    const long = mono.length > 2
+    return (
+      <span
+        aria-hidden="true"
+        className={`inline-flex items-center justify-center rounded-xl font-extrabold tracking-tight text-white shadow-sm ${className} ${
+          long ? 'text-[11px]' : 'text-base'
+        }`}
+        style={{ background: color || '#2F6BFF' }}
+      >
+        {mono}
       </span>
-      <span className="text-[10.5px] leading-tight font-bold tracking-[0.06em] text-ink/75 uppercase">{name}</span>
-    </div>
+    )
+  }
+  const icon = slug && icons ? icons[slug] : null
+  if (!icon) return <span aria-hidden="true" className={`inline-block rounded-xl bg-surface ${className}`} />
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill={tint(icon.hex)} aria-hidden="true">
+      <path d={icon.path} />
+    </svg>
   )
 }
