@@ -1,0 +1,56 @@
+import {
+  Code2,
+  MonitorSmartphone,
+  Smartphone,
+  ReceiptText,
+  Plug,
+  CloudCog,
+  MapPin,
+  Braces,
+  MessagesSquare,
+  Repeat,
+  LifeBuoy,
+  Store,
+  Landmark,
+  Truck,
+  BedDouble,
+  Clapperboard,
+  Building2,
+  Search,
+  PenTool,
+  RefreshCw,
+  Rocket,
+  Layers,
+  Sparkles,
+} from 'lucide-react'
+
+// Icons that site.js may reference by name. Add a name here before using it in content.
+const registry = {
+  Code2,
+  MonitorSmartphone,
+  Smartphone,
+  ReceiptText,
+  Plug,
+  CloudCog,
+  MapPin,
+  Braces,
+  MessagesSquare,
+  Repeat,
+  LifeBuoy,
+  Store,
+  Landmark,
+  Truck,
+  BedDouble,
+  Clapperboard,
+  Building2,
+  Search,
+  PenTool,
+  RefreshCw,
+  Rocket,
+  Layers,
+  Sparkles,
+}
+
+export function getIcon(name) {
+  return registry[name] || Layers
+}

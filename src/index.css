@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+/* ---------- Design tokens ---------- */
+@theme {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --color-brand: #2f6bff;
+  --color-brand-600: #1f57e6;
+  --color-brand-700: #1847c2;
+  --color-brand-50: #eef3ff;
+  --color-brand-100: #dde7ff;
+  --color-brand-200: #bcd0ff;
+
+  --color-ink: #0b1437;
+  --color-body: #5b6478;
+  --color-muted: #8a93a6;
+  --color-line: #e6e9f0;
+  --color-surface: #f7f8fb;
+
+  --color-night: #0b1220;
+  --color-night-2: #111a2e;
+  --color-coal: #05070c;
+
+  --shadow-card: 0 1px 2px rgb(11 20 55 / 0.04), 0 4px 16px rgb(11 20 55 / 0.04);
+  --shadow-lift: 0 2px 4px rgb(11 20 55 / 0.05), 0 16px 36px rgb(11 20 55 / 0.08);
+  --shadow-glow: 0 0 0 1px rgb(47 107 255 / 0.35), 0 20px 60px rgb(47 107 255 / 0.25);
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  body {
+    @apply bg-white font-sans text-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink;
+    letter-spacing: -0.02em;
+  }
+  /* Anchored sections clear the sticky header */
+  section[id], [data-anchor] {
+    scroll-margin-top: 88px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  .on-dark :focus-visible {
+    outline-color: #8fb0ff;
+  }
+}
+
+/* ---------- Backgrounds ---------- */
+@layer components {
+  /* Light hero: faint square grid */
+  .bg-grid {
+    background-color: #fff;
+    background-image:
+      linear-gradient(to right, rgb(47 107 255 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(47 107 255 / 0.055) 1px, transparent 1px);
+    background-size: 70px 70px;
+    background-position: center top;
+  }
+  /* Fade the grid out at the edges */
+  .grid-fade {
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 55%, transparent 100%);
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase text-muted;
+    letter-spacing: 0.3em;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
