@@ -457,8 +457,7 @@ export const contact = {
   title: 'Want to talk to **our team?**',
   text: 'Tell us what you are working on — a new product, an integration, or an existing system that needs work.',
   email: 'ereceiptset@gmail.com',
-  // From the business licence.
-  phone: '+251 98 369 6354',
+  phone: '+251 99 035 1570',
   location: 'Office 505, Woreda 03, Bole, Addis Ababa, Ethiopia',
   socials: [],
   formEndpoint: '',
