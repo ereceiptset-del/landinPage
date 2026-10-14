@@ -26,7 +26,7 @@ export const seo = {
   description:
     'E-receipt builds web apps, mobile apps, digital receipt and e-invoicing systems, and payment integrations for businesses in Ethiopia.',
   // Production domain, e.g. 'https://ereceipt.et'. Enables canonical URL, og:url and JSON-LD url.
-  domain: '',
+  domain: 'https://e-reciept-website.web.app',
   // Path in /public for the Open Graph image (1200×630).
   ogImage: '/og-image.png',
 }

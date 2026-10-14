@@ -4,3 +4,5 @@ dist
 .DS_Store
 src/assets/projects/originals/*
 !src/assets/projects/originals/.gitkeep
+.firebase
+firebase-debug.log

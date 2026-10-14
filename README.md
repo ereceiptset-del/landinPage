@@ -75,6 +75,20 @@ In `site.js` → `contact`:
 - Set `seo.domain` (e.g. `https://example.com`) to enable the canonical URL, `og:url` and an absolute `og:image`.
 - To regenerate `public/og-image.png`, run `node scripts/make-og-image.mjs`.
 
+## Deploying (Firebase Hosting)
+
+The site is live at **https://e-reciept-website.web.app** (Firebase project `e-reciept-website`, set in `.firebaserc`).
+
+```bash
+npm run build
+```
+
+```bash
+firebase deploy --only hosting
+```
+
+`firebase.json` serves `dist/`, sends every path to `index.html`, caches hashed `/assets/*` for a year and never caches `index.html`, so new deploys show up immediately. The site doesn't use the Firebase JavaScript SDK, so no `firebaseConfig` is needed. If you add a custom domain, update `seo.domain` in `site.js` and redeploy.
+
 ## Project structure
 
 ```
@@ -103,7 +117,7 @@ scripts/                   optimize-images.mjs, make-og-image.mjs
 | Booking link | `contact.bookingUrl` | No booking button |
 | Approved metrics | `metrics.items` | Qualitative capability band instead of numbers |
 | Testimonials and client logos | `testimonials.items`, `clientLogos` | Section hidden; capability marquee shown |
-| Production domain | `seo.domain` | No canonical or `og:url` |
+| Custom domain (optional) | `seo.domain` | Uses https://e-reciept-website.web.app |
 | Policies (code ownership, support, data) | `policies` | FAQ uses neutral, non-committal answers |
 | Tech list and integrations confirmation | `technologies` | Draft list from the brief (Telebirr, MoR EIMS, Ethio Telecom included) |
 | Legal pages | `legalLinks` | Not linked |
